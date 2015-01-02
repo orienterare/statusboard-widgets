@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+		<meta http-equiv="Cache-control" content="no-cache" />
+		<meta application-name="Cars near you" data-allowsresizing="YES"
+				data-default-size="4,4" data-min-size="4,4" datamax-size="8,2"
+				data-allows-scrolling="NO" />
+		</head>
+		
+		<style type="text/css">
+			@font-face
+			{
+				font-family: "Roadgeek2005SeriesD";
+				src: url("http://panic.com/fonts/Roadgeek 2005 Series D/Roadgeek 2005 Series D.otf");
+			}
+			
+			body, *
+			{
+			
+			}
+			body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td
+			{ 
+				margin: 0;
+				padding: 0;
+			}
+				
+			fieldset,img
+			{ 
+				border: 0;
+			}
+			
+				
+			/* Settin' up the page */
+			
+			html, body, #main
+			{
+				overflow: hidden; /* */
+			}
+			
+			body
+			{
+				color: white;
+				font-family: 'Roadgeek2005SeriesD', sans-serif;
+				font-size: 20px;
+				line-height: 24px;
+			}
+			body, html, #main
+			{
+				background: transparent !important;
+			}
+			
+			
+			.number
+			{
+				font-size: 100px;
+				margin-left: 20px;
+				margin-top:5px;
+				color: white;
+				text-shadow:0px -2px 0px black;
+				text-transform: uppercase;
+				line-height: 100px;
+				float:left;
+			}
+			
+			.item {
+				float:left;
+				margin-right:10px;
+			}
+			.icon {
+				margin-left:10px;
+				width:100px;
+			}
+			
+			#main {
+				margin:20px;
+			}
+			
+			
+		</style>
+		
+<script type="text/javascript" charset="utf-8">
+function refresh() {
+
+
+	var req = new XMLHttpRequest();
+	console.log("Refreshing Count...");
+
+	req.onreadystatechange = function() {
+		if (req.readyState == 4 && req.status == 200) {
+			document.getElementById('drivenowCount').innerText = req.responseText;
+		}
+	}
+	req.open("GET", 'statusboard-drivenow.php', true);
+	req.send(null);
+
+	var req2 = new XMLHttpRequest();
+	console.log("Refreshing Count...");
+
+	req2.onreadystatechange = function() {
+		if (req2.readyState == 4 && req2.status == 200) {
+			document.getElementById('car2goCount').innerText = req2.responseText;
+		}
+	}
+	req2.open("GET", 'statusboard-car2go.php', true);
+	req2.send(null);
+
+}
+
+function init() {
+	refresh()
+	var int = self.setInterval(function() {
+		refresh()
+	}, 600);
+}
+
+		</script>
+	
+
+	</head>
+	
+	<body onload="init()">
+		<div id="main">
+		
+
+<div class="item">
+<span class="number" id="drivenowCount"><img src="img/spiffygif_32x32.gif" /></span><img class="icon" src="http://i.imgur.com/UdodyNU.png">
+</div>
+<div class="item">
+<span class="number" id="car2goCount"><img src="img/spiffygif_32x32.gif" /></span><img class="icon" src="http://i.imgur.com/ItXPXH9.jpg">
+</div>
+		</div><!-- main -->
+	</body>
+</html>
+
