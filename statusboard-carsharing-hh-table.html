@@ -1,0 +1,56 @@
+
+		
+<script type="text/javascript" charset="utf-8">
+function refresh() {
+
+
+	var req = new XMLHttpRequest();
+	console.log("Refreshing Count...");
+
+	req.onreadystatechange = function() {
+		if (req.readyState == 4 && req.status == 200) {
+			document.getElementById('drivenowCount').innerText = req.responseText;
+		}
+	}
+	req.open("GET", 'statusboard-drivenow.php', true);
+	req.send(null);
+
+	var req2 = new XMLHttpRequest();
+	console.log("Refreshing Count...");
+
+	req2.onreadystatechange = function() {
+		if (req2.readyState == 4 && req2.status == 200) {
+			document.getElementById('car2goCount').innerText = req2.responseText;
+		}
+	}
+	req2.open("GET", 'statusboard-car2go.php', true);
+	req2.send(null);
+
+}
+
+function init() {
+	refresh()
+	var int = self.setInterval(function() {
+		refresh()
+	}, 600);
+}
+
+init();
+
+		</script>
+	
+
+
+
+<table id="cars">
+ <tr>
+ <td class="projectIcon"><img class="icon" src="http://i.imgur.com/UdodyNU.png" width="32"></td>
+ <td class="projectName" style="width: 265px">DriveNow</td>
+ <td class="projectVersion"><span class="number" id="drivenowCount"><img src="img/spiffygif_32x32.gif" /></span></td>
+ </tr>
+ <tr>
+ <td class="projectIcon"><img class="icon" src="http://i.imgur.com/ItXPXH9.png" width="32"></td>
+ <td class="projectName" style="width: 265px">Car2Go</td>
+ <td class="projectVersion"><span class="number" id="car2goCount"><img src="img/spiffygif_32x32.gif" /></span></td>
+ </tr>
+</table>
